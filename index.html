@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotonou Vidéo Club - Analyse des Tendances</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-film"></i>
+                <span>Cotonou Vidéo Club</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Accueil</a></li>
+                <li><a href="#performance" class="nav-link">Performance</a></li>
+                <li><a href="#catalogue" class="nav-link">Catalogue</a></li>
+                <li><a href="#clients" class="nav-link">Clients</a></li>
+                <li><a href="#flux" class="nav-link">Flux</a></li>
+                <li><a href="#conclusion" class="nav-link">Conclusion</a></li>
+            </ul>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sections de présentation -->
+    <main>
+        <!-- Section Accueil -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">Analyse des Tendances d'Usage et de Comportement de la Clientèle</h1>
+                    <p class="hero-subtitle">Cotonou Vidéo Club - Premier Semestre 2025-2026</p>
+                    <div class="hero-info">
+                        <div class="info-card">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <h3>599</h3>
+                                <p>Clients Totaux</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-store"></i>
+                            <div>
+                                <h3>2</h3>
+                                <p>Magasins</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-globe"></i>
+                            <div>
+                                <h3>15+</h3>
+                                <p>Pays</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <div>
+                                <h3>$67,406</h3>
+                                <p>Chiffre d'Affaires</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#performance" class="cta-button">
+                        Découvrir l'analyse <i class="fas fa-arrow-down"></i>
+                    </a>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-card">
+                        <div class="floating-chart" id="mini-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Performance Commerciale -->
+        <section id="performance" class="section">
+            <div class="section-header">
+                <h2>Analyse des Performances Commerciales</h2>
+                <p>Répartition clients, chiffre d'affaires et performance géographique</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <!-- Carte 1: Répartition clients -->
+                <div class="dashboard-card wide">
+                    <div class="card-header">
+                        <h3><i class="fas fa-chart-pie"></i> Répartition de la clientèle par magasin</h3>
+                        <div class="card-actions">
+                            <button class="info-btn" data-info="Magasin 1: 326 clients (54.4%)<br>Magasin 2: 273 clients (45.6%)">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="clientsChart"></canvas>
+                        </div>
+                        <div class="chart-insight">
+                            <p><strong>Insight:</strong> Le magasin 1 concentre 54.4% de la clientèle, soit 53 clients de plus que le magasin 2.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte 2: CA par magasin -->
+                <div class="dashboard-card wide">
+                    <div class="card-header">
+                        <h3><i class="fas fa-line-chart"></i> Évolution du Chiffre d'Affaires par magasin</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                        <div class="chart-insight">
+                            <p><strong>Insight:</strong> Le magasin 2 génère un revenu total légèrement supérieur malgré moins de clients.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte 3: Performance par ville -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-city"></i> Top 10 Villes les plus rentables</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="citiesChart"></canvas>
+                        </div>
+                        <ul class="data-list">
+                            <li><span class="city-name">Cape Coral</span> <span class="city-value">$221.55</span></li>
+                            <li><span class="city-name">Saint-Denis</span> <span class="city-value">$216.54</span></li>
+                            <li><span class="city-name">Aurora</span> <span class="city-value">$198.50</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Carte 4: Performance par pays -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-flag"></i> Top 5 Pays par volume de revenus</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="countriesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Catalogue et Demande -->
+        <section id="catalogue" class="section">
+            <div class="section-header">
+                <h2>Analyse du Catalogue et de la Demande</h2>
+                <p>Films les plus loués, catégories préférées et impact des bonus</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <!-- Films les plus loués -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-trophy"></i> Films les plus loués</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="ranking-list">
+                            <div class="rank-item first">
+                                <span class="rank">1</span>
+                                <span class="movie">Bucket Brotherhood</span>
+                                <span class="count">34 locations</span>
+                            </div>
+                            <div class="rank-item">
+                                <span class="rank">2</span>
+                                <span class="movie">Rocketeer Mother</span>
+                                <span class="count">33 locations</span>
+                            </div>
+                            <div class="rank-item">
+                                <span class="rank">3</span>
+                                <span class="movie">Forward Temple</span>
+                                <span class="count">32 locations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Catégories de films -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-tags"></i> Performance par catégorie</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="categoriesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Audience par rating -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-user-friends"></i> Audience par classification</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="ratingChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Impact des bonus -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-star"></i> Impact des bonus</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="bonusChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Comportement Clients -->
+        <section id="clients" class="section">
+            <div class="section-header">
+                <h2>Comportement des Clients et Fidélisation</h2>
+                <p>Meilleurs clients, inactifs et stratégies de fidélisation</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <!-- Top 10 clients -->
+                <div class="dashboard-card wide">
+                    <div class="card-header">
+                        <h3><i class="fas fa-crown"></i> Top 10 Meilleurs Clients</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="topClientsChart"></canvas>
+                        </div>
+                        <div class="chart-insight">
+                            <p><strong>Insight:</strong> Écart minime de seulement 7 locations entre le 1er et le 10ème client.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clients inactifs -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-user-clock"></i> Clients Inactifs</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="inactive-list">
+                            <div class="inactive-item">
+                                <span class="client-name">Herbert KRUGER</span>
+                                <span class="inactive-days">7,450 jours</span>
+                            </div>
+                            <div class="inactive-item">
+                                <span class="client-name">Jose ANDREW</span>
+                                <span class="inactive-days">7,448 jours</span>
+                            </div>
+                            <div class="inactive-item">
+                                <span class="client-name">Vernon CHAPA</span>
+                                <span class="inactive-days">7,448 jours</span>
+                            </div>
+                        </div>
+                        <div class="chart-insight">
+                            <p><strong>Recommandation:</strong> Campagne de réactivation ou suppression de la base.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Flux de Location -->
+        <section id="flux" class="section">
+            <div class="section-header">
+                <h2>Diagnostic des Flux de Location</h2>
+                <p>Saisonnalité et corrélation prix-durée</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <!-- Saisonnalité -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-calendar-alt"></i> Saisonnalité des Locations</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="seasonalityChart"></canvas>
+                        </div>
+                        <div class="chart-insight">
+                            <p><strong>Pic estival:</strong> Juillet/Août = 75% de l'activité totale.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prix vs Durée -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-balance-scale"></i> Prix vs Durée de Location</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="comparison-grid">
+                            <div class="comparison-card">
+                                <h4>Influence du Prix</h4>
+                                <div class="price-item">
+                                    <span class="price">$0.99</span>
+                                    <span class="rentals">3.58 locations moy.</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price">$2.99</span>
+                                    <span class="rentals">3.39 locations moy.</span>
+                                </div>
+                                <div class="price-item highlight">
+                                    <span class="price">$4.99</span>
+                                    <span class="rentals">3.44 locations moy.</span>
+                                </div>
+                            </div>
+                            <div class="comparison-card">
+                                <h4>Influence de la Durée</h4>
+                                <div class="duration-item highlight">
+                                    <span class="duration">3 jours</span>
+                                    <span class="rentals">3,412 locations</span>
+                                </div>
+                                <div class="duration-item">
+                                    <span class="duration">6 jours</span>
+                                    <span class="rentals">3,392 locations</span>
+                                </div>
+                                <div class="duration-item">
+                                    <span class="duration">7 jours</span>
+                                    <span class="rentals">2,824 locations</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-insight">
+                            <p><strong>Conclusion:</strong> Les clients privilégient la disponibilité immédiate au prix.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section id="conclusion" class="section">
+            <div class="section-header">
+                <h2>Conclusion Générale et Perspectives</h2>
+                <p>Synthèse des performances et recommandations stratégiques</p>
+            </div>
+            
+            <div class="conclusion-grid">
+                <div class="conclusion-card">
+                    <div class="conclusion-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Piliers du Succès</h3>
+                    <ul class="conclusion-list">
+                        <li>Primauté du contenu (PG-13 + bonus)</li>
+                        <li>Logique d'immédiateté des clients</li>
+                        <li>Fidélité des "super-utilisateurs"</li>
+                    </ul>
+                </div>
+
+                <div class="conclusion-card">
+                    <div class="conclusion-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Recommandations</h3>
+                    <ul class="conclusion-list">
+                        <li>Augmenter prix des nouveautés</li>
+                        <li>Généraliser locations courtes (3 jours)</li>
+                        <li>Programme fidélité VIP</li>
+                        <li>Adaptation saisonnière des stocks</li>
+                    </ul>
+                </div>
+
+                <div class="conclusion-card">
+                    <div class="conclusion-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Perspectives</h3>
+                    <p>Passer d'une gestion de stock classique à une stratégie axée sur la disponibilité immédiate et la valeur ajoutée.</p>
+                </div>
+            </div>
+
+            <div class="footer-note">
+                <p>Réalisé par : DAGA Bienvenu • MEHOME Gracia • SOKPIN Jaurets</p>
+                <p>Date : 12 janvier 2026 • SCITI Sème City Institute of Technology and Innovation</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navigation latérale -->
+    <aside class="section-nav">
+        <ul>
+            <li><a href="#home" class="nav-dot active" data-section="home"></a></li>
+            <li><a href="#performance" class="nav-dot" data-section="performance"></a></li>
+            <li><a href="#catalogue" class="nav-dot" data-section="catalogue"></a></li>
+            <li><a href="#clients" class="nav-dot" data-section="clients"></a></li>
+            <li><a href="#flux" class="nav-dot" data-section="flux"></a></li>
+            <li><a href="#conclusion" class="nav-dot" data-section="conclusion"></a></li>
+        </ul>
+    </aside>
+
+    <!-- Modal pour infos détaillées -->
+    <div class="modal" id="infoModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modalTitle"></h3>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="data/charts-data.js"></script>
+    <script src="data/config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
